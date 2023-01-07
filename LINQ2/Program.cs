@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+ 
+namespace Task1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var classes = new[]
+            {
+               new Classroom { Students = {"Evgeniy", "Sergey", "Andrew"}, },
+               new Classroom { Students = {"Anna", "Viktor", "Vladimir"}, },
+               new Classroom { Students = {"Bulat", "Alex", "Galina"}, }
+           };
+            var allStudents = GetAllStudents(classes);
+
+            Console.WriteLine(string.Join(" ", allStudents));
+        }
+
+        static string[] GetAllStudents(Classroom[] classes)
+        {
+            var students = classes.Select(s => s.Students);
+            List<string> ListTemp = new List<string>();
+            foreach (var student in students)
+            {
+                foreach (var name in student)
+                {
+                    ListTemp.Add(name);
+                }
+            }
+            return ListTemp.ToArray();
+        }
+
+        public class Classroom
+        {
+            public List<string> Students = new List<string>();
+        }
+    }
+}
